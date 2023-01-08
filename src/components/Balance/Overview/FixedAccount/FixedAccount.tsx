@@ -1,5 +1,6 @@
 import { FC, useEffect, useState } from "react";
 import { Button, Card, Collapse } from "react-bootstrap";
+import CurrencyConverter from "../../../../helpers/CurrencyConverter";
 
 export interface FixedAccountInfo {
     uuid : string,
@@ -13,6 +14,7 @@ export interface FixedAccountInfo {
 }
 
 const FixedAccount : FC<FixedAccountInfo> = (fixedAccountInfo : FixedAccountInfo) => {    
+    const currency = fixedAccountInfo.currency === "EUR" ? "€" : "₹";
     return (
         <div className="mt-3 d-flex mx-3 justify-content-between">
             <div className="">
@@ -20,8 +22,12 @@ const FixedAccount : FC<FixedAccountInfo> = (fixedAccountInfo : FixedAccountInfo
                 <div className="text-start"><small className="text-muted">{fixedAccountInfo.number}</small></div>
             </div>
             <div className="">
-                <div className="text-end">{fixedAccountInfo.currentAmount}</div>
-                <div className="text-end"><small className="text-muted">{fixedAccountInfo.rateOfInterest}%</small></div>
+                <div className="text-end"><span>{currency}</span> {fixedAccountInfo.currentAmount} <small className="text-muted ms-1">{fixedAccountInfo.rateOfInterest}%</small></div>
+                {fixedAccountInfo.currency === "INR" ? 
+                <div className="text-end">
+                    <small className="text-muted"><span>€</span> {CurrencyConverter.convert(fixedAccountInfo.currentAmount, "INR", "EUR").toFixed(2)}
+                    </small>
+                </div> : null}
             </div>
         </div>
     );

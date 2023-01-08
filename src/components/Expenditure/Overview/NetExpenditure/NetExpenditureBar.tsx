@@ -34,7 +34,7 @@ const NetExpenditureBar : FC<NetExpenditureBarProps> = (netExpenditureBarProps :
 
     return (
         <ProgressBar className="mx-sm-5 mx-3">
-            <ProgressBar striped variant="slategray" now={netExpenditureBarProps.fixedPercent} key={1} label={fixedLabel}/>
+            <ProgressBar striped variant="black" now={netExpenditureBarProps.fixedPercent} key={1} label={fixedLabel}/>
             <ProgressBar variant="slategray" now={netExpenditureBarProps.spentPercent} key={2} label={spentLabel} />
             <ProgressBar variant="white" now={netExpenditureBarProps.remainingPercent} key={3} label={remainingLabel} className="f-black"/>
         </ProgressBar>

@@ -1,7 +1,7 @@
 import { FC, useEffect, useState } from "react";
 import ProgressBar from 'react-bootstrap/ProgressBar';
 
-interface NetWorthBarProps {
+export interface NetWorthBarProps {
     fixedPercent : number,
     tradingPercent : number,
     currentPercent : number,
@@ -15,23 +15,23 @@ const NetWorthBar : FC<NetWorthBarProps> = (netWorthBarProps : NetWorthBarProps)
     const [currentLabel, setCurrentLabel] = useState("Current");
     let isShowingPercent = false;
 
-    const updateLabel = () => {
-        if(isShowingPercent) {
-            setFixedLabel("Fixed");
-            setTradingLabel("Trading");
-            setCurrentLabel("Current");
-        } else {
-            setFixedLabel(netWorthBarProps.fixedPercent.toString() + "%");
-            setTradingLabel(netWorthBarProps.tradingPercent.toString() + "%");
-            setCurrentLabel((netWorthBarProps.currentPercent + netWorthBarProps.currentDebtPercent).toString() + "%");
-        }
-        isShowingPercent = !isShowingPercent;
-        setTimeout(updateLabel, 3000);
-    }
-
     useEffect(() => {
+        const updateLabel = () => {
+            if(isShowingPercent) {
+                setFixedLabel("Fixed");
+                setTradingLabel("Trading");
+                setCurrentLabel("Current");
+            } else {
+                setFixedLabel(netWorthBarProps.fixedPercent.toFixed(2) + "%");
+                setTradingLabel(netWorthBarProps.tradingPercent.toFixed(2) + "%");
+                setCurrentLabel(netWorthBarProps.currentPercent.toFixed(2) + "%");
+            }
+            isShowingPercent = !isShowingPercent;
+            setTimeout(updateLabel, 3000);
+        }
+
         setTimeout(updateLabel, 3000);
-    }, []);
+    }, [netWorthBarProps]);
 
     return (
         <ProgressBar className="mx-sm-5 mx-3">

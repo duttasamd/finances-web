@@ -8,7 +8,8 @@ export interface TradingAccountInfo {
     currency : string
 }
 
-const TradingAccount : FC<TradingAccountInfo> = (tradingAccountInfo : TradingAccountInfo) => {    
+const TradingAccount : FC<TradingAccountInfo> = (tradingAccountInfo : TradingAccountInfo) => {
+    const currency = tradingAccountInfo.currency === "EUR" ? "€" : "₹";    
     return (
         <div className="mt-3 d-flex mx-3 justify-content-between">
             <div className="">
@@ -16,7 +17,7 @@ const TradingAccount : FC<TradingAccountInfo> = (tradingAccountInfo : TradingAcc
                 <div className="text-start"><small className="text-muted">{tradingAccountInfo.number}</small></div>
             </div>
             <div className="">
-                <div className="text-end">{tradingAccountInfo.currentAmount}</div>
+                <div className="text-end"><span>{currency}</span> {tradingAccountInfo.currentAmount}</div>
                 {/* <div className="text-end"><small className="text-muted">{tradingAccountInfo.rateOfInterest}%</small></div> */}
             </div>
         </div>
