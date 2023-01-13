@@ -12,9 +12,9 @@ const NetExpenditure : FC = () => {
 
     const [netExpenditureBarProps, setNetExpenditureBarProps] = useState(
         {
-            fixedPercent : 0,
-            spentPercent : 0,
-            remainingPercent : 100
+            fixed : 0,
+            spent : 0,
+            remaining : 100
         }
     );
 
@@ -32,9 +32,9 @@ const NetExpenditure : FC = () => {
                 const remainingPecent = 100 - (spentPercent + remainingFixedPercent);
 
                 setNetExpenditureBarProps({
-                    fixedPercent : remainingFixedPercent,
-                    spentPercent : spentPercent,
-                    remainingPercent : remainingPecent
+                    fixed : data.remainingFixed,
+                    spent : data.amountSpent,
+                    remaining : data.budget - (data.amountSpent + data.remainingFixed)
                 })
             }
         )
@@ -46,7 +46,7 @@ const NetExpenditure : FC = () => {
             <div className="container d-flex flex-row px-sm-5 py-sm-5 py-3 px-3">
                 <h3 className="font-weight-bold">EXPENSES</h3>
                 <div className="d-flex flex-row justify-content-end flex-grow-1">
-                    <h2 className="font-weight-bold"><span>€</span>{spent}</h2>
+                    <h2 className="font-weight-bold"><span>€</span>{spent.toFixed(2)}</h2>
                     <small className="ms-1 mt-2 mt-md-3"> / {budget}</small>
                 </div>
             </div>
