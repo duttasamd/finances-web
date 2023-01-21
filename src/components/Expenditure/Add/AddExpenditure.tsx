@@ -1,7 +1,18 @@
-import { FC, useRef, useState } from "react";
+import { Dispatch, FC, SetStateAction, useRef, useState } from "react";
 import { Button, Form } from "react-bootstrap";
 
-const AddExpenditure : FC = () => {
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import fontawesome from '@fortawesome/fontawesome';
+
+import { faS, faArrowLeft, faRotateRight } from '@fortawesome/free-solid-svg-icons';
+fontawesome.library.add(faS as any, faArrowLeft as any, faRotateRight as any)
+
+export interface AddExpenditureFunction {
+    setPanel : Dispatch<SetStateAction<string>>;
+}
+
+
+const AddExpenditure : FC<AddExpenditureFunction> = (addExpenditureFunction) => {
     const currentAccountRef = useRef<HTMLSelectElement>(null);
     const typeRef = useRef<HTMLSelectElement>(null);
     const amountRef = useRef<HTMLInputElement>(null);
@@ -48,8 +59,27 @@ const AddExpenditure : FC = () => {
         return true;
     }
 
+    const handleBack = () => {
+        addExpenditureFunction.setPanel("budget");
+    }
+
+    const handleRefresh = () => {
+        window.location.reload();
+    }
+
     return (
     <div className="f-white container px-xl-5">
+        <div className="f-gray">
+            <div className="row my-3">
+                <div className="col-2">
+                    <FontAwesomeIcon icon={["fas","arrow-left"]} onClick={handleBack}/>
+                </div>
+                <div className="col-2 offset-8">
+                    <FontAwesomeIcon icon={["fas","rotate-right"]} onClick={handleRefresh}/>
+                </div>
+            </div>
+        </div>
+
         <h3>Add Expense</h3>
         <div className="mt-3 mt-md-5 input-group">
             <span className="input-group-text">Account</span>
@@ -58,13 +88,14 @@ const AddExpenditure : FC = () => {
                 <option value="4927ac87-8df8-4ff8-b2a2-464819c73a7a">Sparkasse</option>
             </select>
         </div>
-        <form action="" ref={formRef} onSubmit={addExpenditure}>
+        
+        <form action="" ref={formRef} onSubmit={addExpenditure} className="h-100">
             <div className="row mt-3 mt-md-5">
                 {
                     showAddSuccess ? (<span className="f-green mt-5"><strong>Expenditure Successfully Added</strong></span>)
                     :
                     (<>
-                        <div className="col-md-4">
+                        <div className="col-md-4 mt-4 mt-md-0">
                             <select name="" id="" className="form-control" ref={typeRef} disabled={isFormDisabled}>
                                 <option value="GROCERIES">Groceries</option>
                                 <option value="RESTAURANT">Eating Out</option>
@@ -76,18 +107,20 @@ const AddExpenditure : FC = () => {
                                 <option value="MISCELLANEOUS">Miscelleneous</option>
                             </select>
                         </div>
-                        <div className="col-md-4">
+                        <div className="col-md-4 mt-4 mt-md-0">
                             <input type="number" className="form-control" placeholder="Amount" ref={amountRef} required disabled={isFormDisabled} step=".01"/>
                         </div>
-                        <div className="col-md-4">
+                        <div className="col-md-4 mt-4 mt-md-0">
                             <input type="text" className="form-control" placeholder="Comment" ref={commentRef} required disabled={isFormDisabled}/>
                         </div>
                         <div className="d-grid mt-4 mt-md-5">
                             <Button variant="outline-light" size="lg" type="submit" disabled={isFormDisabled}>Add</Button>
                         </div>
+                        
                     </>)
                 }
             </div>
+            
         </form>
 
         <div className="f-red mt-3">{errorText}</div>

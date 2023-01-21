@@ -17,8 +17,8 @@ const BreakUp : FC<BreakUpInfo> = (breakUpInfo) => {
 
     const expenditures = breakUpInfo.expenditures.map((expenditureInfo) => {
         count++;
-        return (<div className="">
-                <Expenditure{...expenditureInfo} key={count}></Expenditure>
+        return (<div className="" key={count}>
+                <Expenditure{...expenditureInfo}></Expenditure>
                 {count == breakUpInfo.expenditures.length ? null : <hr className="f-black my-0 mx-3" /> }
             </div>
         )

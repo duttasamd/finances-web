@@ -13,7 +13,7 @@ const Overview : FC<ExpenditureOverviewProps> = (expenditureOverviewProps) => {
 
     const renderSwitch = (panel : string) => {
         switch(panel) {
-            case "add" : return <AddExpenditure></AddExpenditure>
+            case "add" : return <AddExpenditure setPanel={setPanel}></AddExpenditure>
                 break;
             default : return <BreakUpPanel></BreakUpPanel>
         }

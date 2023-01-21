@@ -18,10 +18,10 @@ const TradingAccountOverview : FC<TradingAccountInfoList> = (tradingAccountInfoL
         const convertedCurrencyValue = CurrencyConverter.convert(tradingAccountInfo.currentAmount, tradingAccountInfo.currency, "EUR");
         total += convertedCurrencyValue;
         
-        return (<>
-                <TradingAccount {...tradingAccountInfo} key={count}></TradingAccount>
+        return (<div key={count}>
+                <TradingAccount {...tradingAccountInfo}></TradingAccount>
                 {count == tradingAccountInfoList.tradingAccountInfos.length ? null : <hr /> }
-            </>
+            </div>
         )
     });
     

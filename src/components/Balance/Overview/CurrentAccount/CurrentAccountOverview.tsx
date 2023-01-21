@@ -18,10 +18,10 @@ const CurrentAccountOverview : FC<CurrentAccountInfoList> = (currentAccountInfoL
         const convertedCurrencyValue = CurrencyConverter.convert(currentAccountInfo.currentAmount, currentAccountInfo.currency, "EUR");
         total += convertedCurrencyValue;
 
-        return (<>
-                <CurrentAccount {...currentAccountInfo} key={count}></CurrentAccount>
+        return (<div key={count}>
+                <CurrentAccount {...currentAccountInfo}></CurrentAccount>
                 {count == currentAccountInfoList.currentAccountInfos.length ? null : <hr /> }
-            </>
+            </div>
         )
     });
     

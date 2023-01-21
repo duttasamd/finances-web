@@ -16,10 +16,10 @@ const FixedAccountOverview : FC<FixedAccountInfoList> = (fixedAccountInfoList : 
         count++;
         const convertedCurrencyValue = CurrencyConverter.convert(fixedAccountInfo.currentAmount, fixedAccountInfo.currency, "EUR");
         total += convertedCurrencyValue;
-        return (<>
-                <FixedAccount {...fixedAccountInfo} key={count}></FixedAccount>
+        return (<div key={count}>
+                <FixedAccount {...fixedAccountInfo}></FixedAccount>
                 {count == fixedAccountInfoList.fixedAccountInfos.length ? null : <hr /> }
-            </>
+            </div>
         )
     });
     
