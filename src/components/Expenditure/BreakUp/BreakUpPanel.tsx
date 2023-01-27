@@ -6,7 +6,11 @@ const BreakUpPanel : FC = () => {
     const [budgetExpenditures, setBudgetExpenditures] =  useState([]);
 
     useEffect(() => {
-        const getAccountsUrl = `${process.env.REACT_APP_FINANCES_API_HOST}/expenditure/2023/01`;
+        const date = new Date();
+        const year = date.getFullYear();
+        const month = date.getMonth() + 1;
+
+        const getAccountsUrl = `${process.env.REACT_APP_FINANCES_API_HOST}/expenditure/${year}/${month}`;
         fetch(getAccountsUrl)
             .then(response=>response.json())
             .then(data => {

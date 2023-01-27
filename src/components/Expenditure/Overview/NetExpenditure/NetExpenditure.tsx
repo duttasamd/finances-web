@@ -19,7 +19,11 @@ const NetExpenditure : FC = () => {
     );
 
     useEffect(() => {
-        const getAccountsUrl = `${process.env.REACT_APP_FINANCES_API_HOST}/expenditure/summary/2023/01`;
+        const date = new Date();
+        const year = date.getFullYear();
+        const month = date.getMonth() + 1;
+
+        const getAccountsUrl = `${process.env.REACT_APP_FINANCES_API_HOST}/expenditure/summary/${year}/${month}`;
         fetch(getAccountsUrl)
             .then(response=>response.json())
             .then(data => {
