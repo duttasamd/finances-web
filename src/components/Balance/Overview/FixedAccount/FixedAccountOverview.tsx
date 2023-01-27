@@ -27,7 +27,7 @@ const FixedAccountOverview : FC<FixedAccountInfoList> = (fixedAccountInfoList : 
         <Card className="mx-sm-5 mx-3">
             <Card.Header onClick={() => setOpen(!open)} className="d-flex bg-black f-white">
                 <div className="me-auto">Fixed Accounts</div>
-                <div className="ms-auto"><span>€</span> {total}</div>
+                <div className="ms-auto"><span>€</span> {total.toFixed(2)}</div>
             </Card.Header>
             <Collapse in={open} className="px-0 pb-3">
                 <div>
