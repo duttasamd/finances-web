@@ -29,7 +29,7 @@ const FixedAccountOverview : FC<FixedAccountInfoList> = (fixedAccountInfoList : 
                 <div className="me-auto">Fixed Accounts</div>
                 <div className="ms-auto"><span>€</span> {total.toFixed(2)}</div>
             </Card.Header>
-            <Collapse in={open} className="px-0 pb-3">
+            <Collapse in={open} className="px-0">
                 <div>
                     {
                         fixedAccounts

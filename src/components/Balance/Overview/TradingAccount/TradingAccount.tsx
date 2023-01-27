@@ -11,7 +11,7 @@ export interface TradingAccountInfo {
 const TradingAccount : FC<TradingAccountInfo> = (tradingAccountInfo : TradingAccountInfo) => {
     const currency = tradingAccountInfo.currency === "EUR" ? "€" : "₹";    
     return (
-        <div className="mt-3 d-flex mx-3 justify-content-between">
+        <div className="my-3 d-flex mx-3 justify-content-between">
             <div className="">
                 <div className="text-start">{tradingAccountInfo.name}</div>
                 <div className="text-start"><small className="text-muted">{tradingAccountInfo.number}</small></div>

@@ -13,7 +13,7 @@ export interface CurrentAccountInfo {
 const CurrentAccount : FC<CurrentAccountInfo> = (currentAccountInfo : CurrentAccountInfo) => {    
     const currency = currentAccountInfo.currency === "EUR" ? "€" : "₹";
     return (
-        <div className="mt-3 d-flex mx-3 justify-content-between">
+        <div className="my-3 d-flex mx-3 justify-content-between">
             <div className="">
                 <div className="text-start">{currentAccountInfo.name}</div>
                 <div className="text-start"><small className="text-muted">{currentAccountInfo.number}</small></div>

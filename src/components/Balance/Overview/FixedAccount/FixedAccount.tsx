@@ -16,7 +16,7 @@ export interface FixedAccountInfo {
 const FixedAccount : FC<FixedAccountInfo> = (fixedAccountInfo : FixedAccountInfo) => {    
     const currency = fixedAccountInfo.currency === "EUR" ? "€" : "₹";
     return (
-        <div className="mt-3 d-flex mx-3 justify-content-between">
+        <div className="my-3 d-flex mx-3 justify-content-between">
             <div className="">
                 <div className="text-start">{fixedAccountInfo.name}</div>
                 <div className="text-start"><small className="text-muted">{fixedAccountInfo.number}</small></div>

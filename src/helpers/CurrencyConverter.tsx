@@ -11,17 +11,12 @@ export default class CurrencyConverter {
         console.log("Updating Rates...");
         this.lastUpdated = new Date();
 
-        const exchangeUrl = `${process.env.REACT_APP_EXCHANGE_API_URL}&base=EUR&symbols=INR`;
+        const exchangeUrl = `${process.env.REACT_APP_FINANCES_API_HOST}/quote/EURINR=X`;
 
         fetch(exchangeUrl).then(response => response.json())
         .then(result => {
-            console.log(result);
-            console.log(result.rates.INR);
-
-            this.conversionMap.EURINR = result.rates.INR;
-            this.conversionMap.INREUR = 1/result.rates.INR;
-
-            console.log(this.conversionMap);
+            this.conversionMap.EURINR = result;
+            this.conversionMap.INREUR = 1/result;
         })
     }
 
@@ -30,7 +25,6 @@ export default class CurrencyConverter {
             this.updateRates();
         }
         
-
         switch(fromCurrency + toCurrency) {
             case "EURINR" : return amount * CurrencyConverter.conversionMap.EURINR;
             case "INREUR" : return amount * CurrencyConverter.conversionMap.INREUR;
