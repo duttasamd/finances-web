@@ -20,11 +20,15 @@ export default class CurrencyConverter {
         })
     }
 
+    static {
+        this.updateRates();
+    }
+
     static convert = (amount : number, fromCurrency : string, toCurrency : string) => {
         if(this.lastUpdated === undefined) {
             this.updateRates();
         }
-        
+
         switch(fromCurrency + toCurrency) {
             case "EURINR" : return amount * CurrencyConverter.conversionMap.EURINR;
             case "INREUR" : return amount * CurrencyConverter.conversionMap.INREUR;

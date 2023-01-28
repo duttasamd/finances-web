@@ -31,10 +31,6 @@ const NetExpenditure : FC = () => {
                 setBudget(data.budget);
                 setFixed(data.remainingFixed);
 
-                const spentPercent = (data.amountSpent/data.budget) * 100;
-                const remainingFixedPercent = ((data.remainingFixed/data.budget) * 100);
-                const remainingPecent = 100 - (spentPercent + remainingFixedPercent);
-
                 setNetExpenditureBarProps({
                     fixed : data.remainingFixed,
                     spent : data.amountSpent,
